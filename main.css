@@ -24,12 +24,17 @@ body {
 
 }
 
+input:focus,
+button:focus {
+    outline: ;
+}
+
 /*------------------------------------
  *  logo
 ------------------------------------*/
 .logo {
     text-align: center;
-    font-size: 32px;
+    font-size: 38px;
     font-weight: bold;
 }
 
@@ -39,7 +44,9 @@ body {
 ------------------------------------*/
 .container {
     margin: 0 auto;
+    padding: 0;
     max-width: 800px;
+
 
 }
 
@@ -49,18 +56,34 @@ body {
 .block {
     margin: 0 auto;
     display: inline-block;
-    padding-right: 20px;
+    padding-right: 18px;
 }
-
-/*------------------------------------
- *  session
-------------------------------------*/
-
-
 
 /*------------------------------------
  *  setting
 ------------------------------------*/
+button.break,
+button.session {
+    background: none;
+    border: none;
+}
+
+
+
+
+/*------------------------------------
+ *  clock
+------------------------------------*/
+.clock {
+    font-size: 30px;
+
+}
+
+.timer {
+
+}
+
+
 
 
 
