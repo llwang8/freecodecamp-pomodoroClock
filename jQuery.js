@@ -41,13 +41,31 @@ $(document).ready(function(){
     }
 
     //display timer countdown
-    var endtime = Date.parse(new Date()) + eval($('.timer').text()) * 60 * 1000;
-    //alert(endtime);
+    var running = true;
+    var d = new Date();
+    var timeGap = eval($('.timer').text());
+    var timeEnd = d.setMinutes(d.getMinutes() + timeGap);
     updateClock();
     var timeinterval = setInterval(updateClock, 1000);
 
-    function getTimeRemaining(endtime){
-        var t = Date.parse(endtime) - Date.parse(new Date());
+    $('.countdown').click(function(){
+        running = !running;
+        if (running){
+            timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
+            updateClock();
+            timeinterval = setInterval(updateClock, 1000);
+        }else {
+            clearInterval(timeinterval);
+            //alert($('.countdown').text().slice(-2));
+            alert($('.countdown').text().slice(0, 2));
+            timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000;
+            //alert(timeGap);
+
+        }
+    });
+
+    function getTimeRemaining(){
+        var t = timeEnd  - Date.parse(new Date());
         var seconds = Math.floor((t / 1000) % 60);
         var minutes = Math.floor((t / 1000 / 60) % 60);
 
@@ -59,29 +77,40 @@ $(document).ready(function(){
     }
 
     function updateClock(){
-        var t = getTimeRemaining(endtime);
-        $('.countdown').text(t.minutes + ":" + t.seconds);
+        var t = getTimeRemaining();
+        $('.countdown').text(('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2));
         if (t.total <= 0){
             clearInterval(timeinterval);
         }
     }
-
 
 
 });
 
 
 //test timer countdown
-var endtime = Date.parse(new Date()) + eval('3') * 60 * 1000;
 
-var t = Date.parse(endtime) - Date.parse(new Date());
-var seconds = Math.floor((t / 1000) % 60);
-var minutes = Math.floor((t / 1000 / 60) % 60);
+//var d = new Date();
+//var endtime = d.setMinutes(d.getMinutes()+ eval('30'));
+//console.log(d);
+//console.log(endtime);
+
+//var t = endtime - Date.parse(new Date());
+//console.log(t);
+//console.log(typeof t);
+
+//var seconds = Math.floor((t / 1000) % 60);
+//var minutes = Math.floor((t / 1000 / 60) % 60);
+//console.log("minutes:" + minutes + "  seconds:" + seconds);
+
+/*
+var d = new Date();
+var endtime = d.setMinutes(d.getMinutes()+ eval('1'));
 updateClock();
 var timeinterval = setInterval(updateClock, 1000);
 
-    function getTimeRemaining(endtime){
-        var t = Date.parse(endtime) - Date.parse(new Date());
+    function getTimeRemaining(){
+        var t = endtime - Date.parse(new Date());
         var seconds = Math.floor((t / 1000) % 60);
         var minutes = Math.floor((t / 1000 / 60) % 60);
 
@@ -93,10 +122,10 @@ var timeinterval = setInterval(updateClock, 1000);
     }
 
     function updateClock(){
-        var t = getTimeRemaining(endtime);
-        console.log(t.minutes + ":" + t.seconds);
+        var t = getTimeRemaining();
+        console.log(('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2));
         if (t.total <= 0){
             clearInterval(timeinterval);
         }
     }
-
+*/
