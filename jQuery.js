@@ -15,7 +15,6 @@ $(document).ready(function(){
         setting = $('.session-setting').text()
         var newSession = updateSetting(setting, $(this).text());
         $('.session-setting').text(newSession);
-        $('.timer').text(newSession);
         if (!running) {
             $('.countdown').text(newSession);
         }
@@ -33,27 +32,27 @@ $(document).ready(function(){
 
     //display timer countdown
 
-    var d = new Date();
-    var timeGap = eval($('.timer').text()) * 60 * 1000;
-    var timeEnd, timeinterval;
-    //var timeEnd = d.setMinutes(d.getMinutes() + timeGap);
-    //updateClock();
-    //var timeinterval = setInterval(updateClock, 1000);
+    var d, timeEnd, timeinterval;
+    var timeGap = eval($('.session-setting').text()) * 60 * 1000;
+    var running = false;
+    var breaking = false;
+    var sessioning = false;
 
     $('.circle').click(function(){
-        running = !running;
-        if (running){
+        if (!running){
+            d = new Date();
             timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
             updateClock();
             timeinterval = setInterval(updateClock, 1000);
         }else {
             clearInterval(timeinterval);
             //alert($('.countdown').text().slice(-2));
-            alert($('.countdown').text().slice(0, 2));
+            //alert($('.countdown').text().slice(0, 2));
             timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 ;
             //alert(timeGap);
 
         }
+        running = !running;
     });
 
     function getTimeRemaining(){
@@ -73,9 +72,30 @@ $(document).ready(function(){
         $('.countdown').text(('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2));
         if (t.total <= 0){
             clearInterval(timeinterval);
+            $('.type').text('Break');
+            $('.countdown').text($('.break-setting').text());
+            timeGap = eval($('.break-setting').text()) * 60 * 1000;
+            d = new Date();
+            timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
+            updateClock();
         }
     }
 
+    //test box background transition
+    $('.box').click(function(){
+        if (!$('.box').hasClass('box-animation')) {
+            $('.box').addClass('box-animation');
+        }else {
+            if (!$('.box').clearQueue()){
+                $('.box').stop(true, false);
+            }else {
+                //$('.box').transition().removeClass('stop');
+                $('.box').stop(false, true);
+            }
+        }
+
+        //$('.box').addClass('box-animation');
+    });
 
 });
 

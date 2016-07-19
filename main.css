@@ -117,7 +117,6 @@ button.countdown {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #333;
     color: #fff;
     border: 3px solid #B3D156;
     border-radius: 50%;
@@ -127,9 +126,32 @@ button.countdown {
     text-align: center;
     display: block;
     padding: 0px;
-
+    background-color: #333;
 
  }
+
+
+/*------------------------------------
+ *  box to test color gradient change
+------------------------------------*/
+.box {
+    width: 200px;
+    height: 100px;
+    border: 3px solid #B3D156;
+    background-size: 100% 200%;
+    padding-bottom: 50px;
+    background-image: linear-gradient(to bottom, #333 50%, red 50% );
+    transition: background-position 10s;
+
+}
+
+.box-animation {
+    background-position: 0 100%;
+
+}
+
+
+
 
 
 
