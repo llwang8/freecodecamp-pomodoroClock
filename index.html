@@ -6,21 +6,22 @@
         <title>Build a Pomodoro Clock</title>
         <link rel="stylesheet" type="text/css" href="normalize.css">
         <link rel="stylesheet" type="text/css" href="main.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <main>
 
             <div class="container">
                 <header class="logo">FreeCodeCamp</header>
-                <div class="block">
-                    <div class="setting">
+                <div class="setting">
+                    <div >
                         <p >BREAK LENGTH</p>
                         <p ><button class="break">-</button>
                             <span class="break-setting">5</span>
                             <button class="break">+</button>
                         </p>
-                    </div>
-                    <div class="setting">
+                    </div><!--
+                --> <div>
                         <p >SESSION LENGTH</p>
                         <p ><button class="session">-</button>
                              <span class="session-setting">25</span>
@@ -29,10 +30,14 @@
                     </div>
                 </div>
                 <div class="clock">
-                    <p >Session</p>
-                    <div class="timer">10</div>
-                    <div class="countdown"></div>
-                    <canvas id="canvas" width="400" height="400" style="background-color:#333"></canvas>
+                    <article class="col">
+                        <div class="circle">
+                            <p >Session<br></p>
+                            <div class="timer">10</div>
+                            <div class="countdown"></div>
+                        </div>
+                      </article>
+
                 </div>
             </div>
 

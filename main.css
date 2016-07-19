@@ -21,7 +21,9 @@
  *  Base
 ------------------------------------*/
 body {
-
+    background-color: #333;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
 }
 
 input:focus,
@@ -34,7 +36,7 @@ button:focus {
 ------------------------------------*/
 .logo {
     text-align: center;
-    font-size: 38px;
+    font-size: 39px;
     font-weight: bold;
 }
 
@@ -42,23 +44,28 @@ button:focus {
 /*------------------------------------
  *  container
 ------------------------------------*/
-.container {
+.container div {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin: 0 auto;
     padding: 0;
     max-width: 800px;
-
-
 }
 
 /*------------------------------------
  *  block
 ------------------------------------*/
 .block {
-    margin: 0 auto;
-    display: inline-block;
+    display: inline;
     padding-right: 18px;
+    border: 1px solid red;
 }
-
+.setting {
+    display: inline-block;
+    margin: 0 auto;
+}
 /*------------------------------------
  *  setting
 ------------------------------------*/
@@ -66,16 +73,15 @@ button.break,
 button.session {
     background: none;
     border: none;
+    color: #fff;
 }
-
-
 
 
 /*------------------------------------
  *  clock
 ------------------------------------*/
 .clock {
-    font-size: 30px;
+    font-size: 46px;
 
 }
 
@@ -83,6 +89,36 @@ button.session {
 
 }
 
+
+/*------------------------------------
+ *  circle
+------------------------------------*/
+
+.col {
+   width: 100%;
+   padding:;
+   background-color: #333;
+   margin-bottom: 5%;
+}
+.circle {
+    position: ;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    border: 3px solid #B3D156;
+    border-radius: 50%;
+    height: 300px;
+    width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+    display: block;
+    padding: 0px;
+
+
+ }
 
 
 
