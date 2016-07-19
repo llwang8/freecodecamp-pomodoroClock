@@ -36,8 +36,10 @@ button:focus {
 ------------------------------------*/
 .logo {
     text-align: center;
-    font-size: 39px;
+    font-family: 'Playball', cursive;
+    font-size: 75px;
     font-weight: bold;
+    padding-top: 20px;
 }
 
 
@@ -88,7 +90,16 @@ button.session {
 .timer {
 
 }
+.countdown {
 
+}
+button.countdown {
+    background: none;
+    border: none;
+    color: #fff;
+    width: 130px;
+
+}
 
 /*------------------------------------
  *  circle

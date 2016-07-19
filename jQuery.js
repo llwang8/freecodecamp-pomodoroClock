@@ -28,14 +28,15 @@ $(document).ready(function(){
 
 
     //display timer countdown
-    var running = true;
+    var running = false;
     var d = new Date();
-    var timeGap = eval($('.timer').text());
-    var timeEnd = d.setMinutes(d.getMinutes() + timeGap);
-    updateClock();
-    var timeinterval = setInterval(updateClock, 1000);
+    var timeGap = eval($('.timer').text()) * 60 * 1000;
+    var timeEnd, timeinterval;
+    //var timeEnd = d.setMinutes(d.getMinutes() + timeGap);
+    //updateClock();
+    //var timeinterval = setInterval(updateClock, 1000);
 
-    $('.countdown').click(function(){
+    $('.circle').click(function(){
         running = !running;
         if (running){
             timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
@@ -45,7 +46,7 @@ $(document).ready(function(){
             clearInterval(timeinterval);
             //alert($('.countdown').text().slice(-2));
             alert($('.countdown').text().slice(0, 2));
-            timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000;
+            timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 -eval($('.timer').text()) * 60 * 1000;
             //alert(timeGap);
 
         }
