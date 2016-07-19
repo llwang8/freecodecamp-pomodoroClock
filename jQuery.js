@@ -3,6 +3,7 @@
 $(document).ready(function(){
     //change break length
     var setting = '';
+    var running = false;
     $('.break').click(function(){
         setting = $('.break-setting').text()
         $('.break-setting').text(updateSetting(setting, $(this).text()));
@@ -15,6 +16,9 @@ $(document).ready(function(){
         var newSession = updateSetting(setting, $(this).text());
         $('.session-setting').text(newSession);
         $('.timer').text(newSession);
+        if (!running) {
+            $('.countdown').text(newSession);
+        }
 
     });
 
@@ -28,7 +32,7 @@ $(document).ready(function(){
 
 
     //display timer countdown
-    var running = false;
+
     var d = new Date();
     var timeGap = eval($('.timer').text()) * 60 * 1000;
     var timeEnd, timeinterval;
@@ -46,7 +50,7 @@ $(document).ready(function(){
             clearInterval(timeinterval);
             //alert($('.countdown').text().slice(-2));
             alert($('.countdown').text().slice(0, 2));
-            timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 -eval($('.timer').text()) * 60 * 1000;
+            timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 ;
             //alert(timeGap);
 
         }
