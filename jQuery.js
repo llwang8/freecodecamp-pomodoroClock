@@ -39,7 +39,7 @@ $(document).ready(function(){
     var sessioning = false;
 
     $('.circle').click(function(){
-        if (!running){
+        if (!running ){
             d = new Date();
             timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
             updateClock();
@@ -72,12 +72,24 @@ $(document).ready(function(){
         $('.countdown').text(('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2));
         if (t.total <= 0){
             clearInterval(timeinterval);
-            $('.type').text('Break');
-            $('.countdown').text($('.break-setting').text());
-            timeGap = eval($('.break-setting').text()) * 60 * 1000;
-            d = new Date();
-            timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
-            updateClock();
+            if (!breaking) {        //session ends
+                breaking = true;
+                sessioning = false;
+                running = true;
+                $('.type').text('Break');
+                $('.countdown').text($('.break-setting').text());
+                timeGap = eval($('.countdown').text()) * 60 * 1000;
+                d = new Date();
+                timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
+                updateClock();
+            }else {                 //break ends
+                breaking = false;
+                sessioning = true;
+                running = false;
+                $('.type').text('Session');
+                $('.countdown').text($('.session-setting').text());
+                timeGap = eval($('.countdown').text()) * 60 * 1000;
+            }
         }
     }
 
