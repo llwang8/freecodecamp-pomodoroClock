@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>Build a Pomodoro Clock</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="normalize.css">
         <link rel="stylesheet" type="text/css" href="main.css">
         <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
@@ -36,17 +38,24 @@
                         <div class="circle">
                             <p class="type">Session</p>
                             <div class="countdown">25</div>
+
                         </div>
                       </article>
-
                 </div>
-                <div class="box"></div>
+            </div>
+            <div class='container'>
+                    <canvas id="demo"></canvas>
+                    <div class="type overlay">Session</div>
+                    <div class="countdown overlay">25:00</div>
+
             </div>
 
         </main>
 
         <script   src='https://code.jquery.com/jquery-2.2.4.min.js'   integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='   crossorigin='anonymous'></script>
         <script type="text/javascript" src="jQuery.js"></script>
+        <script type="text/javascript" src="waterbubble.js"></script>
+
     </body>
 </html>
 

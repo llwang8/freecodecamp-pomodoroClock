@@ -93,10 +93,44 @@ $(document).ready(function(){
         }
     }
 
+    //water bubble
+    $('#demo').waterbubble({
+      // bubble size
+      radius: 150,
+
+      // border width
+      lineWidth: undefined,
+
+      // data to present
+      data: 0.06,
+
+      // color of the water bubble
+      waterColor: 'rgba(179, 209, 86, 1)',
+
+      // text color
+      textColor: 'rgba(255, 255, 255, 0.8)',
+
+      // custom font family
+      font: 'normal 36px lato',
+
+      // show wave
+      wave: true,
+
+      // custom text displayed inside the water bubble
+      txt: undefined,
+
+      // enable water fill animation
+      animation: true
+
+    });
+
+
+
     //test box background transition
     $('.box').click(function(){
         if (!$('.box').hasClass('box-animation')) {
             $('.box').addClass('box-animation');
+            //$('.box').transition({background-position: '10s linear'})
         }else {
             if (!$('.box').clearQueue()){
                 $('.box').stop(true, false);
@@ -109,47 +143,13 @@ $(document).ready(function(){
         //$('.box').addClass('box-animation');
     });
 
+    $('.box2').click(function(){
+        $('.box2').addClass('box2-animation');
+    });
+
+
+
 });
 
 
-//test timer countdown
 
-//var d = new Date();
-//var endtime = d.setMinutes(d.getMinutes()+ eval('30'));
-//console.log(d);
-//console.log(endtime);
-
-//var t = endtime - Date.parse(new Date());
-//console.log(t);
-//console.log(typeof t);
-
-//var seconds = Math.floor((t / 1000) % 60);
-//var minutes = Math.floor((t / 1000 / 60) % 60);
-//console.log("minutes:" + minutes + "  seconds:" + seconds);
-
-/*
-var d = new Date();
-var endtime = d.setMinutes(d.getMinutes()+ eval('1'));
-updateClock();
-var timeinterval = setInterval(updateClock, 1000);
-
-    function getTimeRemaining(){
-        var t = endtime - Date.parse(new Date());
-        var seconds = Math.floor((t / 1000) % 60);
-        var minutes = Math.floor((t / 1000 / 60) % 60);
-
-        return {
-            'total': t,
-            'minutes': minutes,
-            'seconds': seconds
-        }
-    }
-
-    function updateClock(){
-        var t = getTimeRemaining();
-        console.log(('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2));
-        if (t.total <= 0){
-            clearInterval(timeinterval);
-        }
-    }
-*/

@@ -5,16 +5,10 @@
  *   Front-end News! Stylesheet
 
  *  white           : #fff;
- *  header background: #405482
+ *  green           : #B3D156;
+ *  grey            : #333;
 
- *  Indigo        : #3f51b5
- *  Indigo (dark) : #303f9f
- *  Light blue    : #c5cae9
- *  White         : #fff
- *  Pink          : #ff4081
- *  Gray (dark)   : #212121
- *  Gray (medium) : #727272
- *  Gray (light)  : #b6b6b6
+
 *************************************
 
 /*------------------------------------
@@ -46,7 +40,7 @@ button:focus {
 /*------------------------------------
  *  container
 ------------------------------------*/
-.container div {
+.container {
     top: 0;
     bottom: 0;
     left: 0;
@@ -54,6 +48,7 @@ button:focus {
     margin: 0 auto;
     padding: 0;
     max-width: 800px;
+    position: relative;
 }
 
 /*------------------------------------
@@ -67,6 +62,10 @@ button:focus {
 .setting {
     display: inline-block;
     margin: 0 auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 /*------------------------------------
  *  setting
@@ -133,6 +132,33 @@ button.countdown {
     padding-bottom: 39px;
 }
 
+/*------------------------------------
+ *  canvas
+------------------------------------*/
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: ;
+    position: absolute;
+
+}
+
+.type.overlay {
+  position: absolute;
+  top: 60px;
+  left: 76px;
+  font-size: 50px;
+}
+
+.countdown.overlay {
+  position: absolute;
+  top: 180px;
+  left: 99px;
+  font-size: 39px;
+}
 /*------------------------------------
  *  box to test color gradient change
 ------------------------------------*/
