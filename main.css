@@ -54,6 +54,7 @@ button:focus {
     margin: 0 auto;
     padding: 0;
     max-width: 800px;
+    position: relative;
 }
 
 /*------------------------------------
@@ -124,13 +125,17 @@ button.countdown {
     width: 300px;
     box-sizing: border-box;
     text-align: center;
-    display: block;
+    display: ;
     padding: 0px;
-    background-color: #333;
-
+    background-color: ;
+    opacity: 1;
  }
 .type {
-    padding-bottom: 39px;
+    padding-bottom: ;
+}
+.cposition {
+    position: ;
+
 }
 
 /*------------------------------------
@@ -144,17 +149,37 @@ button.countdown {
     padding-bottom: 50px;
     background-image: linear-gradient(to bottom, #333 50%, red 50% );
     transition: background-position 10s linear;
-
+    background-position: ;
 }
-
 .box-animation {
-    background-position: 0 100%;
+    background-position: 2% 20%;
 
 }
 
+.box2 {
+    width: 200px;
+    height: 100px;
+    border: 3px solid #B3D156;
+    background-size: 100% 200%;
+    padding-bottom: 50px;
+    background: repeating-linear-gradient(#333, #333 90%, red 10%, red 100%);
+    transition: background-position 10s linear;
 
+}
 
+.box2-animation {
+    background-position: 2% 100%;
 
+}
+
+#demo {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 300px;
+}
 
 
 
