@@ -1,43 +1,183 @@
 // freecodecamp - Pomodoro Clock -->
 
 $(document).ready(function(){
-    //change break length
+    //define global variables
     var setting = '';
     var running = false;
-    $('.break').click(function(){
-        setting = $('.break-setting').text()
-        $('.break-setting').text(updateSetting(setting, $(this).text()));
+    var breaking = false;
+    var sessioning = false;
+    var d, timeNow, timeLast, timeRemaining, fraction, water;
 
+
+    //change break length when  clock is not running
+    $('.break').click(function(){
+        if (!running){
+            setting = $('.break-setting').text()
+            $('.break-setting').text(updateSetting(setting, $(this).text()));
+        }
     });
 
-    //change session length and update clock's session length
+    //change session length and update clock's session length when clock is not running
     $('.session').click(function(){
-        setting = $('.session-setting').text()
-        var newSession = updateSetting(setting, $(this).text());
-        $('.session-setting').text(newSession);
         if (!running) {
+            setting = $('.session-setting').text()
+            var newSession = updateSetting(setting, $(this).text());
+            $('.session-setting').text(newSession);
             $('.countdown').text(newSession);
         }
 
+        timeRemaining = eval($('.session-setting').text()) * 60 * 1000;
+        updateDisplay(timeRemaining);
     });
 
     function updateSetting(setting, operation){
         if (operation === "+"){
             return eval( setting + '+ 1');
         }else {
-            return eval( setting + '- 1');
+            if (eval( setting + '- 1') < 0) {
+                return 0;
+            }else {
+                return eval( setting + '- 1');
+            }
+
         }
     }
 
 
-    //display timer countdown
+    //water bubble as background for timer
+    $('#demo').waterbubble({
+      // bubble size
+      radius: 150,
+      // border width
+      lineWidth: undefined,
+      // data to present
+      data: 0.06,
+      // color of the water bubble
+      waterColor: 'rgba(179, 209, 86, 1)',
+      // text color
+      textColor: 'rgba(255, 255, 255, 0.8)',
+      // custom font family
+      font: 'normal 36px lato',
+      // show wave
+      wave: true,
+      // custom text displayed inside the water bubble
+      txt: undefined,
+      // enable water fill animation
+      animation: true
 
-    var d, timeEnd, timeinterval;
-    var timeGap = eval($('.session-setting').text()) * 60 * 1000;
-    var running = false;
-    var breaking = false;
-    var sessioning = false;
+    });
 
+    var canvas = document.getElementById('demo');
+    canvas.addEventListener('click', function() {
+        alert("canvas clicked");
+        if (timeRemaining <= 0){
+            //return;
+            switch();
+        }
+        if (!running){
+            running = true;
+            run();
+        }else {
+            //timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 ;
+            pause();
+        }
+
+    }, false);
+
+
+    function update(){
+        if (timeRemaining <= 0){
+            //return;
+            switch();
+        }
+
+        timeNow = (new Date()).getTime();
+        timeRemaining = timeRemaining - (timeNow - timeLast);
+        timeLast = timeNow;
+
+
+        if ($('.type') === 'Session'){
+            totalTime = eval($('.session-setting').text()) * 60 * 1000;
+            water =  'rgba(179, 209, 86, 1)';
+        }else {
+            totalTime = eval($('.break-setting').text()) * 60 * 1000;
+            water = 'rgba(255, 0, 0, 1)';
+        }
+
+        fraction = 1 - (timeRemaining / totalTime);
+
+        $('#progress').waterbubble({
+            data: fraction,
+            animation: false,
+            waterColor: water,
+        });
+
+        if (timeRemaining <= 0){
+            switch();
+        }
+
+
+        updateDisplay(timeRemaining);
+          if (running) {
+            requestAnimationFrame(update);
+        }
+
+    }
+
+    function updateDisplay(t){
+        var seconds = pad(Math.floor((t / 1000) % 60));
+        var minutes = pad(Math.floor((t / 1000 / 60) % 60));
+        $('.countdown').text(minutes + ":" + seconds);
+    }
+
+    function pad(val) {
+        return ('00' + val).slice(-2);
+    }
+
+    function run(){
+        if (timeRemaining <= 0){
+            switch();
+        }
+
+        timeLast = (new Date()).getTime();
+        running = true;
+        requestAnimationFrame(update);
+    }
+
+    function pause(){
+        running = false;
+    }
+
+    function switch(){
+        // session ends and break starts
+        if ($('.type').text() === "Session") {
+            $('.type').text('Break');
+            timeRemaining = eval($('.break-setting').text()) * 60 * 1000;
+            run();
+        }else {
+            //break ends and default setting resets
+            $('.type').text('Session');
+            $('.break-setting').text(5);
+            $('.session-setting').text(25);
+            $('.countdown').text('25:00');
+            $('#demo').waterbubble({
+                data: 0.06,
+                animation: false,
+                waterColor: 'rgba(179, 209, 86, 1)'
+            });
+            //timeRemaining = eval($('.session-setting').text()) * 60 * 1000;
+        }
+    }
+
+
+
+
+
+
+
+
+
+// circle timer
     $('.circle').click(function(){
         if (!running ){
             d = new Date();
@@ -92,61 +232,6 @@ $(document).ready(function(){
             }
         }
     }
-
-    //water bubble
-    $('#demo').waterbubble({
-      // bubble size
-      radius: 150,
-
-      // border width
-      lineWidth: undefined,
-
-      // data to present
-      data: 0.06,
-
-      // color of the water bubble
-      waterColor: 'rgba(179, 209, 86, 1)',
-
-      // text color
-      textColor: 'rgba(255, 255, 255, 0.8)',
-
-      // custom font family
-      font: 'normal 36px lato',
-
-      // show wave
-      wave: true,
-
-      // custom text displayed inside the water bubble
-      txt: undefined,
-
-      // enable water fill animation
-      animation: true
-
-    });
-
-
-
-    //test box background transition
-    $('.box').click(function(){
-        if (!$('.box').hasClass('box-animation')) {
-            $('.box').addClass('box-animation');
-            //$('.box').transition({background-position: '10s linear'})
-        }else {
-            if (!$('.box').clearQueue()){
-                $('.box').stop(true, false);
-            }else {
-                //$('.box').transition().removeClass('stop');
-                $('.box').stop(false, true);
-            }
-        }
-
-        //$('.box').addClass('box-animation');
-    });
-
-    $('.box2').click(function(){
-        $('.box2').addClass('box2-animation');
-    });
-
 
 
 });

@@ -22,7 +22,7 @@ body {
 
 input:focus,
 button:focus {
-    outline: ;
+    outline: none;
 }
 
 /*------------------------------------
@@ -46,27 +46,12 @@ button:focus {
     left: 0;
     right: 0;
     margin: 0 auto;
+    display: block;
     padding: 0;
     max-width: 800px;
     position: relative;
 }
 
-/*------------------------------------
- *  block
-------------------------------------*/
-.block {
-    display: inline;
-    padding-right: 18px;
-    border: 1px solid red;
-}
-.setting {
-    display: inline-block;
-    margin: 0 auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
 /*------------------------------------
  *  setting
 ------------------------------------*/
@@ -76,34 +61,22 @@ button.session {
     border: none;
     color: #fff;
 }
-
-
-/*------------------------------------
- *  clock
-------------------------------------*/
-.clock {
-    font-size: 46px;
-
-}
-
-.timer {
-    visibility: hidden;
-}
-.countdown {
-
-}
-button.countdown {
-    background: none;
-    border: none;
-    color: #fff;
-    width: 130px;
-
+.setting {
+    display: inline-block;
+    margin: 0 auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 /*------------------------------------
  *  circle
 ------------------------------------*/
+.clock {
+    font-size: 46px;
 
+}
 .col {
    width: 100%;
    padding:;
@@ -148,35 +121,18 @@ canvas {
 
 .type.overlay {
   position: absolute;
-  top: 60px;
+  top: 55px;
   left: 76px;
   font-size: 50px;
 }
 
 .countdown.overlay {
   position: absolute;
-  top: 180px;
+  top: 200px;
   left: 99px;
   font-size: 39px;
 }
-/*------------------------------------
- *  box to test color gradient change
-------------------------------------*/
-.box {
-    width: 200px;
-    height: 100px;
-    border: 3px solid #B3D156;
-    background-size: 100% 200%;
-    padding-bottom: 50px;
-    background-image: linear-gradient(to bottom, #333 50%, red 50% );
-    transition: background-position 10s linear;
 
-}
-
-.box-animation {
-    background-position: 0 100%;
-
-}
 
 
 
