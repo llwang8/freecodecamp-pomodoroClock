@@ -73,7 +73,7 @@ $(document).ready(function(){
     //countdown timer
     var canvas = document.getElementById('demo');
     canvas.addEventListener('click', function() {
-        alert("canvas clicked");
+        //alert("canvas clicked");
         if (timeRemaining <= 0){
             //return;
             switchType();
