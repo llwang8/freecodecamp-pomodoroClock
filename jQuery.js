@@ -20,13 +20,15 @@ $(document).ready(function(){
     //change session length and update clock's session length when clock is not running
     $('.session').click(function(){
         if (!running) {
-            setting = $('.session-setting').text()
+            setting = $('.session-setting').text();
             var newSession = updateSetting(setting, $(this).text());
             $('.session-setting').text(newSession);
             $('.countdown').text(newSession);
+            sessioning = true;
         }
 
         timeRemaining = eval($('.session-setting').text()) * 60 * 1000;
+        //alert(timeRemaining);
         updateDisplay(timeRemaining);
     });
 
@@ -34,8 +36,8 @@ $(document).ready(function(){
         if (operation === "+"){
             return eval( setting + '+ 1');
         }else {
-            if (eval( setting + '- 1') < 0) {
-                return 0;
+            if (eval( setting + '- 1') === 0) {
+                return 1;
             }else {
                 return eval( setting + '- 1');
             }
@@ -51,7 +53,7 @@ $(document).ready(function(){
       // border width
       lineWidth: undefined,
       // data to present
-      data: 0.06,
+      data: 0.02,
       // color of the water bubble
       waterColor: 'rgba(179, 209, 86, 1)',
       // text color
@@ -67,12 +69,13 @@ $(document).ready(function(){
 
     });
 
+    //countdown timer
     var canvas = document.getElementById('demo');
     canvas.addEventListener('click', function() {
         alert("canvas clicked");
         if (timeRemaining <= 0){
             //return;
-            switch();
+            switchType();
         }
         if (!running){
             running = true;
@@ -88,15 +91,14 @@ $(document).ready(function(){
     function update(){
         if (timeRemaining <= 0){
             //return;
-            switch();
+            switchType();
         }
 
         timeNow = (new Date()).getTime();
         timeRemaining = timeRemaining - (timeNow - timeLast);
         timeLast = timeNow;
 
-
-        if ($('.type') === 'Session'){
+        if (sessioning){
             totalTime = eval($('.session-setting').text()) * 60 * 1000;
             water =  'rgba(179, 209, 86, 1)';
         }else {
@@ -106,14 +108,15 @@ $(document).ready(function(){
 
         fraction = 1 - (timeRemaining / totalTime);
 
-        $('#progress').waterbubble({
+        $('#demo').waterbubble({
+            radius: 150,
             data: fraction,
             animation: false,
             waterColor: water,
         });
 
         if (timeRemaining <= 0){
-            switch();
+            switchType();
         }
 
 
@@ -136,7 +139,7 @@ $(document).ready(function(){
 
     function run(){
         if (timeRemaining <= 0){
-            switch();
+            switchType();
         }
 
         timeLast = (new Date()).getTime();
@@ -148,14 +151,17 @@ $(document).ready(function(){
         running = false;
     }
 
-    function switch(){
+    function switchType(){
         // session ends and break starts
-        if ($('.type').text() === "Session") {
-            $('.type').text('Break');
+        if (sessioning) {
+            breaking = true;
+            sessioning = false;
+            $('.type').text('Break!');
             timeRemaining = eval($('.break-setting').text()) * 60 * 1000;
-            run();
         }else {
             //break ends and default setting resets
+            breaking = false;
+            sessioning = true;
             $('.type').text('Session');
             $('.break-setting').text(5);
             $('.session-setting').text(25);
@@ -165,76 +171,11 @@ $(document).ready(function(){
                 animation: false,
                 waterColor: 'rgba(179, 209, 86, 1)'
             });
-            //timeRemaining = eval($('.session-setting').text()) * 60 * 1000;
+            timeRemaining = eval($('.session-setting').text()) * 60 * 1000;
         }
+        run();
     }
-
-
-
-
-
-
-
-
-
-// circle timer
-    $('.circle').click(function(){
-        if (!running ){
-            d = new Date();
-            timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
-            updateClock();
-            timeinterval = setInterval(updateClock, 1000);
-        }else {
-            clearInterval(timeinterval);
-            //alert($('.countdown').text().slice(-2));
-            //alert($('.countdown').text().slice(0, 2));
-            timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 ;
-            //alert(timeGap);
-
-        }
-        running = !running;
-    });
-
-    function getTimeRemaining(){
-        var t = timeEnd  - Date.parse(new Date());
-        var seconds = Math.floor((t / 1000) % 60);
-        var minutes = Math.floor((t / 1000 / 60) % 60);
-
-        return {
-            'total': t,
-            'minutes': minutes,
-            'seconds': seconds
-        }
-    }
-
-    function updateClock(){
-        var t = getTimeRemaining();
-        $('.countdown').text(('0' + t.minutes).slice(-2) + ":" + ('0' + t.seconds).slice(-2));
-        if (t.total <= 0){
-            clearInterval(timeinterval);
-            if (!breaking) {        //session ends
-                breaking = true;
-                sessioning = false;
-                running = true;
-                $('.type').text('Break');
-                $('.countdown').text($('.break-setting').text());
-                timeGap = eval($('.countdown').text()) * 60 * 1000;
-                d = new Date();
-                timeEnd = d.setMilliseconds(d.getMilliseconds() + timeGap);
-                updateClock();
-            }else {                 //break ends
-                breaking = false;
-                sessioning = true;
-                running = false;
-                $('.type').text('Session');
-                $('.countdown').text($('.session-setting').text());
-                timeGap = eval($('.countdown').text()) * 60 * 1000;
-            }
-        }
-    }
-
 
 });
-
 
 
