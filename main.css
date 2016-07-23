@@ -29,7 +29,6 @@ button:focus {
  *  logo
 ------------------------------------*/
 .logo {
-    text-align: center;
     font-family: 'Playball', cursive;
     font-size: 75px;
     font-weight: bold;
@@ -40,6 +39,7 @@ button:focus {
 /*------------------------------------
  *  container
 ------------------------------------*/
+
 .container {
     top: 0;
     bottom: 0;
@@ -48,10 +48,9 @@ button:focus {
     margin: 0 auto;
     display: block;
     padding: 0;
-    max-width: 800px;
+    width: 400px;
     position: relative;
 }
-
 /*------------------------------------
  *  setting
 ------------------------------------*/
@@ -63,11 +62,20 @@ button.session {
 }
 .setting {
     display: inline-block;
-    margin: 0 auto;
+    margin: auto;
+    width: ;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+}
+.subset {
+    position: relative;
+    float: left;
+    margin-left: 50px;
+}
+.change {
+    margin-left: 30px;
 }
 
 /*------------------------------------
@@ -76,67 +84,28 @@ button.session {
 canvas {
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
     display: block;
-    width: ;
+    width: 300px;
     position: absolute;
+    left: 50px;
 
 }
 
 .type.overlay {
   position: absolute;
-  top: 320px;
-  left: 76px;
+  top: 245px;
+  left: 120px;
   font-size: 50px;
 }
 
 .countdown.overlay {
   position: absolute;
-  top: 480px;
-  left: 99px;
+  top: 400px;
+  left: 150px;
   font-size: 39px;
 }
 
 
-
-
-
-
-/*------------------------------------
- *  circle
-------------------------------------*/
-.clock {
-    font-size: 46px;
-
-}
-.col {
-   width: 100%;
-   padding:;
-   background-color: #333;
-   margin-bottom: 5%;
-}
-.circle {
-    position: ;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: #fff;
-    border: 3px solid #B3D156;
-    border-radius: 50%;
-    height: 300px;
-    width: 300px;
-    box-sizing: border-box;
-    text-align: center;
-    display: block;
-    padding: 0px;
-    background-color: #333;
-
- }
-.type {
-    padding-bottom: 39px;
-}
 
 
 

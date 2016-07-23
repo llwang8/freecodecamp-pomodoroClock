@@ -5,9 +5,10 @@ $(document).ready(function(){
     var setting = '';
     var running = false;
     var breaking = false;
-    var sessioning = false;
+    var sessioning = true;
     var d, timeNow, timeLast, timeRemaining, fraction, water;
 
+    timeRemaining = eval($('.session-setting').text()) * 60 * 1000;
 
     //change break length when  clock is not running
     $('.break').click(function(){
@@ -53,7 +54,7 @@ $(document).ready(function(){
       // border width
       lineWidth: undefined,
       // data to present
-      data: 0.02,
+      data: 0.0,
       // color of the water bubble
       waterColor: 'rgba(179, 209, 86, 1)',
       // text color
@@ -81,7 +82,6 @@ $(document).ready(function(){
             running = true;
             run();
         }else {
-            //timeGap = eval($('.countdown').text().slice(-2)) * 1000 + eval($('.countdown').text().slice(0, 2)) * 60 * 1000 ;
             pause();
         }
 
