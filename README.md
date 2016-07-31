@@ -6,9 +6,14 @@ I built an interactive Pomodoro Clock with JavaScript, jQuery, HTML and CSS, whi
 
 # Built with:
 
-Implemented with jQuery, HTML and CSS. Also used normalize.css, digital color meter, google fonts.
+Implemented with jQuery, HTML and CSS. Also used normalize.css, digital color meter, google fonts, jQuery plugin [Liquid Bubble](http://www.jqueryscript.net/chart-graph/Customizable-Liquid-Bubble-Chart-With-jQuery-Canvas.html).
 
 # Link
 
 You can view it on codepan:
 - [Build a Pomodoro Clock](http://codepen.io/llwang8/pen/mELAyx)
+- [Build a Pomodoro Clock (version-1)]()
+
+# Credit
+
+I got inspiration from [Rafael J. Rodriguez](https://github.com/Rafase282/My-FreeCodeCamp-Code/wiki/Zipline-Build-a-Pomodoro-Clock) using Liquid Bubble as the progress bar, and requestAnimationFrame instead of setInterval / clearInterval as in my first version.

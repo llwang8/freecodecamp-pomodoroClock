@@ -9,7 +9,7 @@
  *  grey            : #333;
 
 
-*************************************
+
 
 /*------------------------------------
  *  Base
@@ -63,7 +63,6 @@ button.session {
 .setting {
     display: inline-block;
     margin: auto;
-    width: ;
     top: 0;
     bottom: 0;
     left: 0;
